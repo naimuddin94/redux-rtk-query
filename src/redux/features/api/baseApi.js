@@ -8,9 +8,16 @@ export const baseApi = createApi({
   }),
   endpoints: (builder) => ({
     getPost: builder.query({
-      query: () => "/posts",
+      query: (id) => `/posts/${id}`,
+    }),
+    setPost: builder.mutation({
+      query: (post) => ({
+        url: "/posts",
+        method: "POST",
+        body: post,
+      }),
     }),
   }),
 });
 
-export const { useGetPostQuery } = baseApi;
+export const { useGetPostQuery,useSetPostMutation } = baseApi;
